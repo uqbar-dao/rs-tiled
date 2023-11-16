@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     util::{floor_div, get_attrs, map_wrapper, parse_tag, XmlEventResult},
@@ -10,7 +11,7 @@ use crate::{
 use super::util::parse_data_line;
 
 /// The raw data of a [`InfiniteTileLayer`]. Does not include a reference to its parent [`Map`](crate::Map).
-#[derive(PartialEq, Clone)]
+#[derive(Serialize, Deserialize, PartialEq, Clone)]
 pub struct InfiniteTileLayerData {
     chunks: HashMap<(i32, i32), ChunkData>,
 }

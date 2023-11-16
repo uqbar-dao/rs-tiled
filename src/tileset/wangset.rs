@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::Error,
@@ -15,7 +16,7 @@ mod wang_tile;
 pub use wang_tile::*;
 
 /// Wang set's terrain brush connection type.
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Copy)]
 #[allow(missing_docs)]
 pub enum WangSetType {
     Corner,
@@ -30,7 +31,7 @@ impl Default for WangSetType {
 }
 
 /// Raw data belonging to a WangSet.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct WangSet {
     /// The name of the Wang set.
     pub name: String,

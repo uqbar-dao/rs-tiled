@@ -1,6 +1,7 @@
 use std::{collections::HashMap, path::Path};
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     animation::{parse_animation, Frame},
@@ -16,7 +17,7 @@ use crate::{
 pub type TileId = u32;
 
 /// Raw data belonging to a tile.
-#[derive(Debug, PartialEq, Clone, Default)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Default)]
 pub struct TileData {
     /// The image of the tile. Only set when the tile is part of an "image collection" tileset.
     pub image: Option<Image>,

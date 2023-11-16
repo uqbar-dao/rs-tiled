@@ -8,6 +8,7 @@ use crate::image::Image;
 use crate::properties::{parse_properties, Properties};
 use crate::tile::TileData;
 use crate::{util::*, Gid, ResourceCache, ResourceReader, Tile, TileId};
+use serde::{Deserialize, Serialize};
 
 mod wangset;
 pub use wangset::*;
@@ -15,7 +16,7 @@ pub use wangset::*;
 /// A collection of tiles for usage in maps and template objects.
 ///
 /// Also see the [TMX docs](https://doc.mapeditor.org/en/stable/reference/tmx-map-format/#tileset).
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Tileset {
     /// The name of the tileset, set by the user.
     pub name: String,

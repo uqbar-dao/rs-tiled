@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::Error,
@@ -10,7 +11,7 @@ use crate::{
 };
 
 /// Stores the data of the Wang color.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct WangColor {
     /// The name of this color.
     pub name: String,

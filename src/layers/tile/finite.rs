@@ -1,4 +1,5 @@
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     util::{get_attrs, map_wrapper, XmlEventResult},
@@ -8,7 +9,7 @@ use crate::{
 use super::util::parse_data_line;
 
 /// The raw data of a [`FiniteTileLayer`]. Does not include a reference to its parent [`Map`](crate::Map).
-#[derive(PartialEq, Clone, Default)]
+#[derive(Serialize, Deserialize, PartialEq, Clone, Default)]
 pub struct FiniteTileLayerData {
     width: u32,
     height: u32,

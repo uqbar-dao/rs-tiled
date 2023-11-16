@@ -3,6 +3,7 @@
 use std::{collections::HashMap, fmt, path::Path, str::FromStr, sync::Arc};
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::{Error, Result},
@@ -19,7 +20,7 @@ pub(crate) struct MapTilesetGid {
 }
 
 /// All Tiled map files will be parsed into this. Holds all the layers and tilesets.
-#[derive(PartialEq, Clone, Debug)]
+#[derive(Serialize, Deserialize, PartialEq, Clone, Debug)]
 pub struct Map {
     version: String,
     /// The way tiles are laid out in the map.
@@ -272,7 +273,7 @@ impl Map {
 
 // Specifies whether the odd or even rows/columns are shifted half a tile
 // right/down. Only applies to Staggered and Hexagonal map orientations.
-#[derive(Debug, PartialEq, Eq, Copy, Clone, Default)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Copy, Clone, Default)]
 #[allow(missing_docs)]
 pub enum StaggerIndex {
     Even,
@@ -312,7 +313,7 @@ impl FromStr for StaggerIndex {
 
 // Specifies which axis is staggered. Only applies to Staggered and Hexagonal
 // map orientations.
-#[derive(Debug, PartialEq, Eq, Copy, Clone, Default)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Copy, Clone, Default)]
 #[allow(missing_docs)]
 pub enum StaggerAxis {
     X,
@@ -351,7 +352,7 @@ impl FromStr for StaggerAxis {
 }
 
 /// Represents the way tiles are laid out in a map.
-#[derive(Debug, PartialEq, Eq, Copy, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Copy, Clone)]
 #[allow(missing_docs)]
 pub enum Orientation {
     Orthogonal,

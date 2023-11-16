@@ -1,6 +1,7 @@
 //! Structures related to tile animations.
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::{Error, Result},
@@ -11,7 +12,7 @@ use crate::{
 ///
 /// [frame]: https://doc.mapeditor.org/en/stable/reference/tmx-map-format/#tmx-frame
 /// [TMX tile animation]: https://doc.mapeditor.org/en/stable/reference/tmx-map-format/#animation
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Copy)]
 pub struct Frame {
     /// The local ID of a tile within the parent tileset.
     pub tile_id: u32,

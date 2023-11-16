@@ -1,4 +1,5 @@
 use std::{collections::HashMap, path::Path, sync::Arc};
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::Result,
@@ -9,7 +10,7 @@ use crate::{
 };
 
 /// The raw data of a [`GroupLayer`]. Does not include a reference to its parent [`Map`](crate::Map).
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct GroupLayerData {
     layers: Vec<LayerData>,
 }

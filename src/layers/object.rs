@@ -1,6 +1,7 @@
 use std::{collections::HashMap, path::Path, sync::Arc};
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     parse_properties,
@@ -10,7 +11,7 @@ use crate::{
 };
 
 /// Raw data referring to a map object layer or tile collision data.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct ObjectLayerData {
     objects: Vec<ObjectData>,
     /// The color used in the editor to display objects in this layer.

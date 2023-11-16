@@ -1,6 +1,7 @@
 use std::{collections::HashMap, str::FromStr};
 
 use xml::{attribute::OwnedAttribute, reader::XmlEvent};
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::{Error, Result},
@@ -8,7 +9,7 @@ use crate::{
 };
 
 /// Represents a RGBA color with 8-bit depth on each channel.
-#[derive(Debug, PartialEq, Eq, Copy, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Copy, Clone)]
 #[allow(missing_docs)]
 pub struct Color {
     pub alpha: u8,
@@ -64,7 +65,7 @@ impl FromStr for Color {
 /// Represents a custom property's value.
 ///
 /// Also read the [TMX docs](https://doc.mapeditor.org/en/stable/reference/tmx-map-format/#tmx-properties).
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum PropertyValue {
     /// A boolean value. Corresponds to the `bool` property type.
     BoolValue(bool),

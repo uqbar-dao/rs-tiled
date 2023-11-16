@@ -1,6 +1,7 @@
 use std::{path::Path, sync::Arc};
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::Result, properties::Properties, util::*, Color, Map, MapTilesetGid, ResourceCache,
@@ -16,7 +17,7 @@ pub use tile::*;
 mod group;
 pub use group::*;
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub(crate) enum LayerDataType {
     Tiles(TileLayerData),
     Objects(ObjectLayerData),
@@ -33,7 +34,7 @@ pub(crate) enum LayerTag {
 }
 
 /// The raw data of a [`Layer`]. Does not include a reference to its parent [`Map`](crate::Map).
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
 pub struct LayerData {
     /// The layer's name, set arbitrarily by the user.
     pub name: String,

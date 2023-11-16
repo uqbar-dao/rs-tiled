@@ -1,6 +1,7 @@
 use std::{collections::HashMap, path::Path, sync::Arc};
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::{Error, Result},
@@ -13,7 +14,7 @@ use crate::{
 /// The location of the tileset this tile is in
 ///
 /// Tilesets can be contained within either a map or a template.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub enum TilesetLocation {
     /// Index into the Map's tileset list, guaranteed to be a valid index of the map tileset container.
     Map(usize),
@@ -22,7 +23,7 @@ pub enum TilesetLocation {
 }
 
 /// Stores the internal tile gid about a layer tile, along with how it is flipped.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct ObjectTileData {
     /// A valid TilesetLocation that points to a tileset that **may or may not contain** this tile.
     tileset_location: TilesetLocation,
@@ -117,7 +118,7 @@ impl<'map> ObjectTile<'map> {
 /// A structure describing an [`Object`]'s shape.
 ///
 /// Also see the [TMX docs](https://doc.mapeditor.org/en/stable/reference/tmx-map-format/#tmx-object).
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 #[allow(missing_docs)]
 pub enum ObjectShape {
     Rect {
@@ -151,7 +152,7 @@ pub enum ObjectShape {
 }
 
 /// The horizontal alignment of an [`ObjectShape::Text`].
-#[derive(Debug, PartialEq, Clone, Copy, Default)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Copy, Default)]
 #[allow(missing_docs)]
 pub enum HorizontalAlignment {
     #[default]
@@ -162,7 +163,7 @@ pub enum HorizontalAlignment {
 }
 
 /// The vertical alignment of an [`ObjectShape::Text`].
-#[derive(Debug, PartialEq, Clone, Copy, Default)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Copy, Default)]
 #[allow(missing_docs)]
 pub enum VerticalAlignment {
     #[default]
@@ -174,7 +175,7 @@ pub enum VerticalAlignment {
 /// Raw data belonging to an object. Used internally and for tile collisions.
 ///
 /// Also see the [TMX docs](https://doc.mapeditor.org/en/stable/reference/tmx-map-format/#tmx-object).
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct ObjectData {
     id: u32,
     tile: Option<ObjectTileData>,

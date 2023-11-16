@@ -1,6 +1,7 @@
 use std::path::{Path, PathBuf};
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::{Error, Result},
@@ -9,7 +10,7 @@ use crate::{
 };
 
 /// A reference to an image stored somewhere within the filesystem.
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct Image {
     /// The **uncanonicalized** filepath of the image, starting from the path given to load the file
     /// this image is in. See the example for more details.

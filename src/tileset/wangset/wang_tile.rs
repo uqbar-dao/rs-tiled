@@ -1,6 +1,7 @@
 use std::str::FromStr;
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     error::Error,
@@ -9,7 +10,7 @@ use crate::{
 };
 
 /// The Wang ID, stored as an array of 8 u8 values.
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Copy)]
 pub struct WangId(pub [u8; 8]);
 
 impl FromStr for WangId {
@@ -36,7 +37,7 @@ impl FromStr for WangId {
 }
 
 /// Stores the Wang ID.
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Copy)]
 pub struct WangTile {
     #[allow(missing_docs)]
     pub wang_id: WangId,

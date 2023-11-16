@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use xml::attribute::OwnedAttribute;
+use serde::{Deserialize, Serialize};
 
 use crate::{
     parse_properties,
@@ -16,7 +17,7 @@ pub use finite::*;
 pub use infinite::*;
 
 /// Stores the internal tile gid about a layer tile, along with how it is flipped.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
 pub struct LayerTileData {
     /// The index of the tileset this tile's in, relative to the tile's map. Guaranteed to be a
     /// valid index of the map tileset container, but **isn't guaranteed to actually contain
@@ -87,7 +88,7 @@ impl LayerTileData {
 /// The reason this data is not public is because with the current interface there is no way to
 /// dereference [`TileLayer`] into this structure, and even if we could, it wouldn't make much
 /// sense, since we can already deref from the finite/infinite tile layers themselves.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub(crate) enum TileLayerData {
     Finite(FiniteTileLayerData),
     Infinite(InfiniteTileLayerData),
